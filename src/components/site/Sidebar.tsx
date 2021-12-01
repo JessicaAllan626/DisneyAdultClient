@@ -3,7 +3,7 @@ import {Route, Link, Routes} from 'react-router-dom';
 import './site.css';
 import Reviews from "../Reviews/Reviews";
 import Drinks from "../Drinks/Drinks";
-import Home from "./Home";
+// import Home from "./Home/Home";
 
 
 type TokenProps = {
@@ -24,14 +24,14 @@ class Sidebar extends React.Component<TokenProps, {}> {
         <div className='sidebar'>
             <div>
                 <ul id='sidebarList'>
-                    <li><Link to='/'>Home</Link></li>
+                    {/* <li><Link to='/'>Home</Link></li> */}
                     <li><Link to='/drinks'>Drinks</Link></li>
                     <li><Link to='/reviews'>Reviews</Link></li>
                 </ul>
             </div>
             <div>
                 <Routes>
-                    <Route path='/' element={<Home token={this.props.token} />} />
+                    {/* <Route path='/' element={<Home token={this.props.token} />} /> */}
                     <Route path='/drinks' element={<Drinks token={this.props.token} />} />
                     <Route path='/reviews' element={<Reviews token={this.props.token} />} />
                 </Routes>

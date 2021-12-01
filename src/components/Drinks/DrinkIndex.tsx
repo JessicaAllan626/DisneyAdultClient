@@ -5,18 +5,18 @@ type TokenProps = {
     token: string | undefined | null,
 }
 
-type DrinkGet = {
+type DrinkGetter = {
     name: string,
     alcohol: string,
     location: string,
     price: string,
     description: string,
-    drinks: DrinkDetails[],
+    drinks: DrinkInfo[],
     id: string,
     update: boolean,
 }
 
-type DrinkDetails = {
+type DrinkInfo = {
     name: string,
     alcohol: string,
     location: string,
@@ -25,7 +25,7 @@ type DrinkDetails = {
     id: string,
 }
 
-class GetDrink extends React.Component<TokenProps, DrinkGet> {
+class GetDrink extends React.Component<TokenProps, DrinkGetter> {
 
     constructor(props: TokenProps) {
         super(props)
@@ -56,7 +56,6 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
                 drinks: data,
                 id: data.id,
             })
-            // console.log(data[0].id);
         })
         .catch((err) => console.log(`[Error]: ${err}`))
     }
@@ -67,7 +66,6 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
 
     deleteDrink = (id: any) => {
         alert('Drink deleted');
-        // console.log(id);
         fetch(`http://localhost:3000/drinks/delete/${id}`, {
             method: 'DELETE',
             headers: new Headers({
@@ -83,7 +81,7 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
         fetch(`http://localhost:3000/drinks/update/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
-                tales: {
+                drinks: {
                     name: this.state.name,
                     alcohol: this.state.alcohol,
                     location: this.state.location,
@@ -99,7 +97,6 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
         })
         .then(res => res.json())
         .then((data) => {
-            // console.log(data);
             this.setState({
                 name: data.name,
                 alcohol: data.alcohol,
@@ -112,23 +109,22 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
     }  
 
     mapDrink = (props: any) => {
-        // console.log(props);
         return(
-            props.drinks.map((drinks: DrinkDetails, index: number) => {
+            props.drinks.map((drinks: DrinkInfo, index: number) => {
                 return(
                     <div>
                         <CardGroup key={index}>
                                 <Card className={'card'}>
                                     <h3><u>Disney Drinks</u></h3>
-                                    <p><b><i>Name: </i></b>{drinks.name}</p>
-                                    <p><b><i>Alcohol: </i></b>{drinks.alcohol}</p>
-                                    <p><b><i>Location: </i></b>{drinks.location}</p>
-                                    <p><b><i>Price: </i></b>{drinks.price}</p>
-                                    <p><b><i>Description: </i></b>{drinks.description}</p>
-                                    {/* <p><b><i>id: </i></b>{drinks.id}</p> */}
+                                    <p>Name: {drinks.name}</p>
+                                    <p>Alcohol: {drinks.alcohol}</p>
+                                    <p>Location: {drinks.location}</p>
+                                    <p>Price: {drinks.price}</p>
+                                    <p>Description: {drinks.description}</p>
                                     <Button onClick={() => this.setState({update: !this.state.update})}>Update</Button>
-                                    <Button onClick={() => this.deleteDrink(drinks.id)} >Delete</Button>   
+                                    <Button onClick={() => this.deleteDrink(drinks.id)} >Delete</Button>  
                                     {this.state.update ? (
+                                        //ADD IN DRINK PICS FOR CARDS
                                         <div>
                                         <form onSubmit={() => this.updateDrink(drinks.id)}>
                                             <h2>Update a Drink</h2>
@@ -142,11 +138,11 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
                                             <br/>
                                             <label htmlFor='location'>Location:</label>
                                             <br/>
-                                            <textarea id='location' value={this.state.location} onChange={(e) => this.setState({location: e.target.value})} />
+                                            <input type='type' id='location' value={this.state.location} onChange={(e) => this.setState({location: e.target.value})} />
                                             <br/>
                                             <label htmlFor='price'>Price:</label>
                                             <br/>
-                                            <textarea id='price' value={this.state.price} onChange={(e) => this.setState({price: e.target.value})} />
+                                            <input type='type' id='price' value={this.state.price} onChange={(e) => this.setState({price: e.target.value})} />
                                             <br/>
                                             <label htmlFor='description'>Description:</label>
                                             <br/>
@@ -169,7 +165,6 @@ class GetDrink extends React.Component<TokenProps, DrinkGet> {
             <div>
                 <h3><u>My Disney Drinks</u></h3>
                 <this.mapDrink name={this.state.name} alcohol={this.state.alcohol} location={this.state.location} price={this.state.price} description={this.state.description} drinks={this.state.drinks} />
-                {/* <this.updateDrink /> */}
             </div>
         )
     }

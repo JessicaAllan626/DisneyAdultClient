@@ -1,0 +1,32 @@
+.card {
+    margin: 30px;
+    margin-left: 13%;
+    margin-right: 13%;
+    padding: 20px;
+    border: 3px solid rgb(109, 46, 117);
+    background: linear-gradient(transparent 0%, purple 25%, transparent 80%);
+}
+
+input {
+    max-width: 50%;
+    width: 25rem; 
+}
+
+textarea {
+    max-width: 50%;
+    width: 25rem;
+    height: 10rem;
+}
+
+button {
+    margin: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+button:hover {
+    background-color: rgb(149, 96, 156);
+}
+

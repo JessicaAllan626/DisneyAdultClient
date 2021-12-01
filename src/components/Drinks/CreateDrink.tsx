@@ -46,7 +46,7 @@ class CreateDrink extends React.Component<TokenProps, DrinkCreate> {
         .then(res => res.json())
         .then((data) => {
             console.log(data);
-            alert('You have created a new Drink! Yay!')
+            alert('You have added a new Disney Drink! Yay!')
             })
         .catch((err) => console.log(`[Error]: ${err}`))
     }
@@ -66,11 +66,11 @@ class CreateDrink extends React.Component<TokenProps, DrinkCreate> {
                     <br/>
                     <label htmlFor='location'>Location:</label>
                     <br/>
-                    <textarea id='location' value={this.state.location} onChange={(e) => this.setState({location: e.target.value})} />
+                    <input type='type' id='location' value={this.state.location} onChange={(e) => this.setState({location: e.target.value})} />
                     <br/>
                     <label htmlFor='price'>Price:</label>
                     <br/>
-                    <textarea id='price' value={this.state.price} onChange={(e) => this.setState({price: e.target.value})} />
+                    <input type='type' id='price' value={this.state.price} onChange={(e) => this.setState({price: e.target.value})} />
                     <br/>
                     <label htmlFor='description'>Description:</label>
                     <br/>

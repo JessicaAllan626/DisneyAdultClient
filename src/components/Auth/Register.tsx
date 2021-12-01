@@ -1,16 +1,15 @@
 import React from 'react';
+import {Button} from 'reactstrap';
 
 type RegisterState = {
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    // role: string,
 }
 
 type SessionProps = {
     updateLocalStorage: (newToken: string) => void,
-    // updateRole: (role: string) => void,
     clearLocalStorage: () => void,
 }
 
@@ -23,7 +22,6 @@ class Register extends React.Component<SessionProps, RegisterState> {
             lastName: '',
             email: '',
             password: '',
-            // role: '',
         }
     }
 
@@ -39,7 +37,6 @@ class Register extends React.Component<SessionProps, RegisterState> {
                     lastName: this.state.lastName,
                     email: this.state.email,
                     password: this.state.password,
-                    // role: this.state.role,
                 }
             }),
             headers: new Headers({
@@ -50,10 +47,6 @@ class Register extends React.Component<SessionProps, RegisterState> {
         .then(data => {
             console.log(data);
             this.props.updateLocalStorage(data.sessionToken)
-            
-            // if(data.user.role !== undefined) {
-            //     this.props.updateRole(data.user.role)
-            // }
         })
         .catch((err) => {
             console.log(`[Error}: ${err}]`);
@@ -82,7 +75,7 @@ class Register extends React.Component<SessionProps, RegisterState> {
                     <br/>
                     <input type='password' id='password' value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
                     <br/>
-                    <button type='submit' id='register' onClick={this.handleSubmit}>Register</button>
+                    <Button type='submit' id='register' onClick={this.handleSubmit}>Register</Button>
                 </form>
             </div>
         )

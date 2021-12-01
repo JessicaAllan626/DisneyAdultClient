@@ -1,0 +1,32 @@
+#login, #toggle, #register {
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 15px;
+    background-color: transparent;
+    border: 2px solid #301185;
+    border-radius: 10px;
+    color: #301185;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#login:hover, #toggle:hover, #register:hover {
+    cursor: pointer;
+    color: rgb(133, 31, 143);
+    border: 2px solid rgb(133, 31, 143);
+    background-color: rgb(161, 101, 161);
+    
+}
+#logout {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: rgb(85, 7, 109);
+}
+
+#logout:hover {
+    cursor: pointer;
+    color: rgb(101, 16, 122);
+}

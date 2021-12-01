@@ -3,12 +3,10 @@ import React from 'react';
 type LoginState = {
     email: string,
     password: string,
-    // role: string
 }
 
 type SessionProps = {
     updateLocalStorage: (newToken: string) => void,
-    // updateRole: (role: string) => void,
     clearLocalStorage: () => void,
 }
 
@@ -19,7 +17,6 @@ class Login extends React.Component<SessionProps, LoginState> {
         this.state = {
             email: '',
             password: ''
-            // role: ''
         }
     }
 
@@ -33,7 +30,6 @@ class Login extends React.Component<SessionProps, LoginState> {
                 user: {
                     email: this.state.email,
                     password: this.state.password,
-                    // role: this.state.role,
                 }
             }),
             headers: new Headers({
@@ -44,11 +40,6 @@ class Login extends React.Component<SessionProps, LoginState> {
         .then(data => {
             console.log(data);
             this.props.updateLocalStorage(data.sessionToken)
-            
-            // if(data.user.role !== undefined) {
-            //     this.props.updateRole(data.user.role)
-            // }
-
         })
         .catch((err) =>{
             console.log(`[Error]: ${err}`);

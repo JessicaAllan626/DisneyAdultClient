@@ -5,7 +5,7 @@ type TokenProps = {
     token: string | undefined | null,
 }
 
-type ReviewGet = {
+type GetReviews = {
     nameOfDrink: string,
     reviewEntry: string,
     rating: string,
@@ -21,7 +21,7 @@ type ReviewInfo = {
     id: string,
 }
 
-class GetReview extends React.Component<TokenProps, ReviewGet> {
+class GetReview extends React.Component<TokenProps, GetReviews> {
 
     constructor(props: TokenProps) {
         super(props)
@@ -36,7 +36,7 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
     }
 
     myReviews = () => {
-        fetch(`http://localhost:3000/reviews/mine`, {
+        fetch(`http://localhost:3000/review/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
 
     deleteReview = (id: any) => {
         alert('Review has been deleted');
-        fetch(`http://localhost:3000/reviews/delete/${id}`, {
+        fetch(`http://localhost:3000/review/delete/${id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
 
     updateReview = (id: any) => {
         alert('This review has been updated')
-        fetch(`http://localhost:3000/reviews/update/${id}`, {
+        fetch(`http://localhost:3000/review/update/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 reviews: {
@@ -98,7 +98,6 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
     }
 
     mapReview = (props: any) => {
-        // console.log(props);
         return(
             props.reviews.map((reviews: ReviewInfo, index: number) => {
                 return(
@@ -106,9 +105,9 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
                         <h3>Disney Drinks Reviews</h3>
                         <CardGroup key={index}>
                                 <Card className={'card'}>
-                                    <p><b>Name: </b>{reviews.nameOfDrink}</p>
-                                    <p><b>Entry: </b>{reviews.reviewEntry}</p>
-                                    <p><b>Rating: </b>{reviews.rating}</p>
+                                    <p>Name: {reviews.nameOfDrink}</p>
+                                    <p>Entry: {reviews.reviewEntry}</p>
+                                    <p>Rating: {reviews.rating}</p>
                                     <Button onClick={() => this.setState({update: !this.state.update})}>Update</Button>
                                     <Button onClick={() => this.deleteReview(reviews.id)} >Delete</Button>   
                                     {this.state.update ? (
@@ -120,14 +119,14 @@ class GetReview extends React.Component<TokenProps, ReviewGet> {
                                             <input type='type' id='nameOfDrink' value={this.state.nameOfDrink} onChange={(e) => this.setState({nameOfDrink: e.target.value})} />  
                                             <br/>
                                             <label htmlFor='rating'>Rating:</label>
-                                                <input type='select' id='rating' value={this.state.rating} onChange={(e) => this.setState({rating: e.target.value})} >
+                                                <select id='rating' value={this.state.rating} onChange={(e) => this.setState({rating: e.target.value})} >
                                                 <option></option>
                                                 <option value = "1: This was not magical and it ruined my vacation">1: This was not magical and it ruined my vacation</option>
                                                 <option value = "2: Why do people drink this">2: Why do people drink this </option>
                                                 <option value = "3: Not my favorite but dont hate it">3: Not my favorite but I don't hate it</option>
                                                 <option value = "4: Deluxe resort vibes">4: Deluxe resort vibes</option>
                                                 <option value = "5: I would have an IV of this drink pumped into my veins">5: I would have an IV of this drink pumped into my veins</option>                       
-                                                </input>
+                                                </select>
                                             <br/>
                                             <label htmlFor='reviewEntry'>Entry:</label>
                                             <br/>

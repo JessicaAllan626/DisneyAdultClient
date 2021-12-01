@@ -20,7 +20,8 @@ class Drinks extends React.Component<TokenProps, {}> {
         return(
             <div>
                 <h2>Disney Adult Drinks!</h2>
-
+                <p>Here you can add a drink to the Disney Drinks board or view drinks that have already been added!</p>
+                
                 <CreateDrink token={this.props.token}/>
 
                 <DrinkIndex token={this.props.token}/>

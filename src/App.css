@@ -1,38 +1,58 @@
-.App {
+*{
+  margin: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  background-color: #886cd2;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  letter-spacing: 1.5px;
+  color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+label {
+  font-size: 22px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-size: 45px;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-size: 35px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-size: 25px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+input, textarea {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  color: black;
+}
+
+button {
+  margin: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding: 5px;
+  background-color: transparent;
+  border: 2px solid #301185;
+  border-radius: 10px;
+  color: #301185;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+  color: black;
+  border: 2px solid rgb(111, 2, 184);
+  background-color: rgb(111, 2, 184);
 }
