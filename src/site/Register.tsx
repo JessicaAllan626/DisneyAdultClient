@@ -1,6 +1,7 @@
 import React from 'react';
+// import APIURL from '../helpers/environment';
 
-type LoginState = {
+type RegisterState = {
     email: string,
     password: string,
 }
@@ -10,21 +11,21 @@ type SessionProps = {
     clearLocalStorage: () => void,
 }
 
-class Login extends React.Component<SessionProps, LoginState> {
+class Register extends React.Component<SessionProps, RegisterState> {
 
     constructor(props: SessionProps) {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
         }
     }
 
     handleSubmit = (e: React.MouseEvent) => {
         e.preventDefault();
-        console.log('User Logged In')
+        console.log('Register Submitted!')
 
-        fetch(`http://localhost:3000/user/login`, {
+        fetch(`http://localhost:3000/user/register`, {
             method: 'POST',
             body: JSON.stringify({
                 user: {
@@ -34,15 +35,15 @@ class Login extends React.Component<SessionProps, LoginState> {
             }),
             headers: new Headers({
                 'Content-Type': 'application/json'
-            })   
+            })
         })
         .then(res => res.json())
         .then(data => {
             console.log(data);
             this.props.updateLocalStorage(data.sessionToken)
         })
-        .catch((err) =>{
-            console.log(`[Error]: ${err}`);
+        .catch((err) => {
+            alert(`[Error}: ${err}]`);
             this.props.clearLocalStorage();
         })
     }
@@ -51,20 +52,21 @@ class Login extends React.Component<SessionProps, LoginState> {
         return(
             <div>
                 <form>
-                    <h2>Disney Adult Login</h2>
+                    <h2>Register</h2>
                     <label htmlFor='email'>Email:</label>
                     <br/>
-                    <input type='type' id='loginEmail' value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />  
+                    <input type='email' id='email' required value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />  
                     <br/>
                     <label htmlFor='password'>Password:</label>
                     <br/>
-                    <input type='password' id='loginPassword' value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
+                    <input type='password' id='password' required value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
                     <br/>
-                    <button type='submit' id='login' onClick={this.handleSubmit}>Login</button>
+                    <button type='submit' id='register' onClick={this.handleSubmit}>Register!</button>
                 </form>
+
             </div>
         )
     }
 }
 
-export default Login;
+export default Register;
